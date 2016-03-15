@@ -1,0 +1,217 @@
+#mainContent, .modal-header {
+    text-align: center;
+}
+#shino {
+    position: relative;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 50px;
+    width: 303px;
+    height: 303px;
+}
+
+#shinoimg {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+}
+#shinoimg:hover {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+#shinoimg:active {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+}
+.heart {
+    position: absolute;
+    animation: hAnim 0.8s 1;
+    -webkit-animation: hAnim 0.8s 1;
+    animation-fill-mode: forwards;
+
+    animation-delay:0s;
+    -webkit-animation-delay:0s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+}
+.heart.bg {
+    z-index: -999;
+    filter:         url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: brightness(6);
+    -moz-filter:    brightness(6);
+    -ms-filter:     brightness(6);
+    -o-filter:      brightness(6);
+    filter: gray;
+}
+
+.counter-totalBoops {
+    padding: 0 20px;
+}
+
+#versionContainer {
+    text-align: right;
+    padding: 8px 15px;
+    font-size: 1.3em;
+    color: #eee;
+}
+#settings {
+    padding: 5px 15px;
+    font-size: 1.3em;
+    color: #eee;
+}
+#versionContainer a, #settings a {
+    color: #eee;
+}
+
+#settings {
+    text-align: left;
+    padding: 5px 15px;
+    font-size: 1.3em;
+}
+#footbar {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.75);
+    min-height: 41px;
+}
+
+#bStats h3 {
+    margin-top: 0px;
+}
+.factory {
+    position: relative;
+    width: 100%;
+    background-color: #444;
+    color: #eee;
+}
+.factory h3 {
+    background-color: #222;
+}
+.factory > img {
+    float: left;
+    height: 100px;
+    width: 100px;
+    /*border: 1px solid #444;*/
+}
+.factory .stats {
+    float: right;
+}
+
+.factory .add, .factory .del {
+    display: block;
+    width: 40px;
+    cursor: pointer;
+    /*visibility: hidden;*/
+}
+.factory:hover .add, .factory:hover .del {
+    visibility: visible;
+}
+.factory .add:hover, .factory .del:hover {
+    background-color: #333;
+}
+.factory .add:active, .factory .del:active {
+    background-color: #111;
+}
+
+.factory .overlay {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.factory.dissabled .overlay{
+    cursor: default;
+    display: block;
+    background-color: rgba(255,255,255,0.8);
+}
+.factory.locked .overlay{
+    cursor: default;
+    display: block;
+    background-color: rgba(255,255,255,0.5);
+}
+
+#mainContent > div:last-child {
+    margin-bottom: 100px;
+}
+
+#fbContainer {
+    text-align: left;
+}
+
+img {
+    max-width: 100%;
+}
+
+#footbar input[type=button] {
+    background-color: #999;
+    border: solid #111 2px;
+    color: #111;
+    outline: none;
+}
+#footbar input[type=button]:hover {
+    background-color: #bbb;
+    border: solid #111 2px;
+    color: #111;
+}
+#footbar input[type=button]:active {
+    background-color: #777;
+    border: solid #ddd 2px;
+    color: #ddd;
+}
+
+#trNote {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+#fbMsg {
+    height: 83px;
+}
+
+#HighscoresContainer h3 {
+    margin-top: 0px;
+}
+
+.paddedCounter {
+    padding: 7px 15px;
+}
+
+.row.success {
+  background-color: #dff0d8;
+}
+
+
+@keyframes hAnim {
+    0%   {opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px);}
+    75%  {opacity: 0.8;}
+    100% {opacity: 1; -webkit-transform: translateY(-200px); transform: translateY(-200px);}
+}
+
+
+
+.glyphicon.spinning {
+    animation: spin 1.5s infinite linear;
+    -webkit-animation: spin2 1.5s infinite linear;
+}
+.glyphicon.loading {
+    font-size: 40px;
+    animation: spin 1.5s infinite linear;
+    -webkit-animation: spin2 1.5s infinite linear;
+}
+ 
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+ 
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}

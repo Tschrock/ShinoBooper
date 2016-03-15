@@ -14,573 +14,28 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/toastr.css" rel="stylesheet"/>
 
+
+        <link href="css/main.css" rel="stylesheet"/>
+
+
         <script src="js/jquery-2.2.0.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/toastr.js"></script>
 
-        <style>
-            body {
-                text-align: center;
-            }
-            #shino {
-                position: relative;
-                cursor: pointer;
-                margin: auto;
-                margin-top: 50px;
-                width: 303px;
-                height: 303px;
-            }
 
-            #shinoimg {
-                -webkit-transform: scale(0.98);
-                transform: scale(0.98);
-            }
-            #shinoimg:hover {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-            }
-            #shinoimg:active {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-            }
-            .heart {
-                position: absolute;
-                animation: hAnim 0.8s 1;
-                -webkit-animation: hAnim 0.8s 1;
-                animation-fill-mode: forwards;
+        <script src="js/feedback.js"></script>
+        <script src="js/highscores.js"></script>
+        <script src="js/game.js"></script>
 
-                animation-delay:0s;
-                -webkit-animation-delay:0s; /* Safari and Chrome */
-                -webkit-animation-fill-mode: forwards;
-            }
-            .heart.bg{
-                z-index: -999;
-                filter:         url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-                -webkit-filter: brightness(6);
-                -moz-filter:    brightness(6);
-                -ms-filter:     brightness(6);
-                -o-filter:      brightness(6);
-                filter: gray;
-            }
-            #totalBoops {
-                padding: 0 20px;
-            }
-
-            #versionContainer{
-                position: fixed;
-                bottom: 0px;
-                right: 0px;
-                text-align: right;
-                padding: 5px 15px;
-                font-size: 1.3em;
-                color: #eee;
-            }
-            #versionContainer a {
-                color: #eee;
-            }
-
-            #version {
-            }
-
-            #settings {
-                text-align: left;
-                padding: 5px 15px;
-                font-size: 1.3em;
-            }
-            #footbar {
-                position: fixed;
-                bottom: 0px;
-                right: 0px;
-                left: 0px;
-                background-color: rgba(0,0,0,0.75);
-                min-height: 41px;
-            }
-
-            #bStats h3 {
-                margin-top: 0px;
-            }
-            .factory {
-                position: relative;
-                width: 100%;
-                background-color: #444;
-                color: #eee;
-            }
-            .factory h3 {
-                background-color: #222;
-            }
-            .factory > img {
-                float: left;
-                height: 100px;
-                width: 100px;
-                /*border: 1px solid #444;*/
-            }
-            .factory .stats {
-                float: right;
-            }
-
-            .factory .add, .factory .del {
-                display: block;
-                width: 40px;
-                cursor: pointer;
-                /*visibility: hidden;*/
-            }
-            .factory:hover .add, .factory:hover .del {
-                visibility: visible;
-            }
-            .factory .add:hover, .factory .del:hover {
-                background-color: #333;
-            }
-            .factory .add:active, .factory .del:active {
-                background-color: #111;
-            }
-
-            .factory .overlay {
-                display: none;
-                cursor: pointer;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0px;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-            }
-
-            /*            .factory:hover .overlay {
-                            visibility: visible;
-                            background-color: rgba(255,255,255,0.2);
-                        }*/
-
-            .factory.dissabled .overlay{
-                cursor: default;
-                display: block;
-                background-color: rgba(255,255,255,0.8);
-            }
-            .factory.locked .overlay{
-                cursor: default;
-                display: block;
-                background-color: rgba(255,255,255,0.5);
-            }
-
-            #mainContent > div:last-child {
-                margin-bottom: 50px;
-            }
-
-            .lightboxContainer {
-                display: none;
-                position: fixed;
-                top: 0px;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-                background-color: rgba(0,0,0,0.75);
-                z-index: 999;
-            }
-            @media (min-width: 768px) {
-                .lightboxContainer {
-                    padding-top: 50px;
-                    padding-bottom: 100px;
-                }
-                .lightboxContent {
-                    padding: 60px 40px;
-                }
-                .closeLightbox {
-                    display: none;
-                }
-            }
-            .lightboxContent {
-                background-color: #fff;
-                border-radius: 10px;
-                height: 100%;
-                font-size: larger;
-            }
-
-            .scrollContainerParent {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .lightboxContent h3 {
-                margin-top: 50px;
-            }
-
-            .lightboxContent .scrollContainer {
-                flex: 1;
-                overflow: auto;
-                padding-bottom: 50px;
-                background-color: #eee;
-            }
-
-            .closeLightbox {
-                position: absolute;
-                top: 0px;
-                right: 0px;
-                color: #bbb;
-                font-size: 45px;
-                height: 60px;
-                width: 60px;
-                cursor: pointer;
-                font-family: sans-serif;
-                vertical-align: middle;
-                text-align: center;
-            }
-
-            .closeLightbox:hover, .closeLightbox:active {
-                color: #999;
-            }
-
-            img {
-                max-width: 100%;
-            }
-
-            #footbar input[type=button] {
-                background-color: #999;
-                border: solid #111 2px;
-                color: #111;
-                outline: none;
-            }
-            #footbar input[type=button]:hover {
-                background-color: #bbb;
-                border: solid #111 2px;
-                color: #111;
-            }
-            #footbar input[type=button]:active {
-                background-color: #777;
-                border: solid #ddd 2px;
-                color: #ddd;
-            }
-
-            @keyframes hAnim {
-                0%   {opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px);}
-                75%  {opacity: 0.8;}
-                100% {opacity: 1; -webkit-transform: translateY(-200px); transform: translateY(-200px);}
-            }
-        </style>
-
-        <script>
-            var factories;
-            var boops = 0;
-            var hboops = 0;
-            var factoryBPS = 0;
-            function onShinoBooped() {
-                boops++;
-                hboops++;
-                updateTotal();
-                renderHeart("");
-            }
-            function updateTotal() {
-                $("#totalBoops").text(Math.floor(boops));
-            }
-            bpsArr = [[0, 0]];
-            function updateBps() {
-                bpsArr.push([Date.now(), hboops]);
-                if (bpsArr.length > 5) {
-                    bpsArr.shift();
-                }
-                $("#bps").text((Math.round((bpsArr[bpsArr.length - 1][1] - bpsArr[0][1]) / ((bpsArr[bpsArr.length - 1][0] - bpsArr[0][0]) / 1000))) + factoryBPS);
-            }
-            function renderHeart(txt, extraclass) {
-                hdiv = document.createElement("div");
-                heart = document.createElement("img");
-                heart.src = "/img/heartif.png";
-                hdiv.className = "heart " + extraclass;
-                hdiv.style.top = (150 + (Math.floor(Math.random() * 50) - 100)) + "px";
-                hdiv.style.left = (303 + (Math.floor(Math.random() * 100) - 200)) + "px";
-                hdiv.addEventListener("webkitAnimationEnd", removeHeart);
-                hdiv.appendChild(heart);
-                hdiv.appendChild(document.createTextNode(txt || ""));
-                $("#shino").append(hdiv);
-            }
-            function removeHeart() {
-                $(this).remove();
-            }
-            function init() {
-
-                factories = [{
-                        name: "Chiras",
-                        id: "Chiras",
-                        iconSrc: "/img/chira.png",
-                        getBaseBPS: function () {
-                            return 2;
-                        },
-                        getAdjustedBPS: function () {
-                            return this.getBaseBPS();
-                        },
-                        getFinalBPS: function () {
-                            return this.getAdjustedBPS() * this.quantity;
-                        },
-                        getBaseCost: function () {
-                            return 80;
-                        },
-                        getCost: function () {
-                            return this.getBaseCost() + Math.ceil((this.quantity * this.quantity) / 1);
-                        },
-                        isDisabled: function () {
-                            return false;
-                        },
-                        quantity: 0,
-                        unlocked: true
-                    },
-                    {
-                        name: "Aggies",
-                        id: "Aggies",
-                        iconSrc: "/img/aggie.png",
-                        getBaseBPS: function () {
-                            return 5;
-                        },
-                        getAdjustedBPS: function () {
-                            return this.getBaseBPS();
-                        },
-                        getFinalBPS: function () {
-                            return this.getAdjustedBPS() * this.quantity;
-                        },
-                        getBaseCost: function () {
-                            return 500;
-                        },
-                        getCost: function () {
-                            return this.getBaseCost() + Math.ceil((this.quantity * this.quantity) * 5);
-                        },
-                        isDisabled: function () {
-                            return false;
-                        },
-                        quantity: 0,
-                        unlocked: false
-                    },
-                    {
-                        name: "Shino Clones",
-                        id: "Shino_Clones",
-                        iconSrc: "/img/shino_yes_cookies.png",
-                        getBaseBPS: function () {
-                            return 7;
-                        },
-                        getAdjustedBPS: function () {
-                            return this.getBaseBPS();
-                        },
-                        getFinalBPS: function () {
-                            return this.getAdjustedBPS() * this.quantity;
-                        },
-                        getBaseCost: function () {
-                            return 2000;
-                        },
-                        getCost: function () {
-                            return this.getBaseCost() + Math.ceil((this.quantity * this.quantity) * 20);
-                        },
-                        isDisabled: function () {
-                            return false;
-                        },
-                        quantity: 0,
-                        unlocked: false
-                    }
-                ];
-
-                for (var i = 0; i < factories.length; i++) {
-                    $("#factories").append(generateFactoryBlock(i, factories[i]));
-                }
-
-                $(document).on("click", ".factory .add", function () {
-                    fid = $(this).parents(".factory").data("factoryid");
-                    if (fid !== undefined && factories[fid].getCost() <= boops) {
-                        boops -= factories[fid].getCost();
-                        factories[fid].quantity++;
-                        updateFactoryBlocksInfo();
-                    }
-                });
-                $(document).on("click", ".factory .del", function () {
-                    fid = $(this).parents(".factory").data("factoryid");
-                    if (fid !== undefined && factories[fid].quantity > 0) {
-                        boops += factories[fid].getCost() * 0.8;
-                        factories[fid].quantity--;
-                        updateFactoryBlocksInfo();
-                    }
-                });
-
-                loadProgress();
-                updateFactoryBlocksInfo();
-                window.setInterval(updateBps, 200);
-                window.setInterval(addBoops, 200);
-                window.setInterval(saveProgress, 3 * 60 * 1000); //autosave progress every 3 min.
-            }
-
-            var lastBoopUpdateTime = Date.now();
-            function addBoops() {
-                fBPS = 0;
-                for (var i = 0; i < factories.length; i++) {
-                    fBPS += factories[i].getFinalBPS();
-                }
-                var currBoopUpdateTime = Date.now();
-                var msecDiff = currBoopUpdateTime - lastBoopUpdateTime;
-                var factboops = (fBPS / 1000) * msecDiff;
-                boops += factboops;
-                lastBoopUpdateTime = currBoopUpdateTime;
-                factoryBPS = fBPS;
-                updateTotal();
-            }
-
-            function updateFactoryBlocksInfo() {
-                for (var i = 0; i < factories.length; i++) {
-                    $("#factory" + i + " .name").text(factories[i].name + (factories[i].quantity > 0 ? (" (" + factories[i].quantity + ")") : ""));
-                    $("#factory" + i + " .bps").text("BPS: " + factories[i].getAdjustedBPS());
-                    $("#factory" + i + " .cost").text("Cost: " + factories[i].getCost());
-                    $("#factory" + i).toggleClass("locked", !factories[i].unlocked);
-                    if (factories[i].quantity >= 5 && factories[i + 1] !== undefined) {
-                        factories[i + 1].unlocked = true;
-                    }
-                }
-            }
-
-            function genUdateableText(id, classes, initText) {
-                var txt = document.createElement("span");
-                txt.id = id;
-                txt.className = classes;
-                txt.appendChild(document.createTextNode(initText));
-                return txt;
-            }
-            function genClassedElement(element, classes) {
-                var div = document.createElement(element);
-                div.className = classes;
-                return div;
-            }
-            function genImg(src, alt) {
-                var img = document.createElement("img");
-                img.src = src;
-                img.alt = alt;
-                return img;
-            }
-
-            function generateFactoryBlock(id, factory) {
-                var fact = genClassedElement("div", "factory" + (factory.isDisabled() ? " dissabled" : (factory.unlocked ? "" : " locked")));
-                fact.id = "factory" + id;
-                fact.appendChild(genImg(factory.iconSrc, factory.name));
-                var head = document.createElement("h3");
-                head.appendChild(genUdateableText("", "add pull-left", "+"))
-                head.appendChild(genUdateableText("", "name", factory.name));
-                head.appendChild(genUdateableText("", "del pull-right", "-"))
-                fact.appendChild(head);
-                var stats = genClassedElement("div", "stats col-lg-3");
-                stats.appendChild(genUdateableText("", "bps", "BPS: " + factory.getAdjustedBPS()));
-                stats.appendChild(document.createElement("br"));
-                stats.appendChild(genUdateableText("", "cost", "Cost: " + factory.getCost()));
-                fact.appendChild(stats);
-                fact.appendChild(genClassedElement("div", "overlay"));
-                fact.appendChild(genClassedElement("div", "clearfix"));
-                $(fact).data("factoryid", id);
-                return fact;
-            }
-
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                var expires = "expires=" + d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            }
-
-            function getCookie(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) === ' ')
-                        c = c.substring(1);
-                    if (c.indexOf(name) === 0)
-                        return c.substring(name.length, c.length);
-                }
-                return "";
-            }
-
-            function saveProgress() {
-                setCookie("version", $("#version").text());
-                setCookie("boops", boops);
-                setCookie("hboops", hboops);
-
-                factSave = [];
-                for (var i = 0; i < factories.length; i++) {
-                    factSave.push(factories[i].id + ", " + factories[i].quantity);
-                }
-                setCookie("factSave", factSave.join("|"));
-                toastr.success("Saved progress.");
-            }
-
-            function loadProgress() {
-                if (getCookie("version") === "") {
-
-                } else {
-                    if (getCookie("version") !== $("#version").text()) {
-                        if (confirm("Your saved data is from a different version! This might cause problems. Do you want to try loading it anyway?")) {
-                            setCookie("version", $("#version").text());
-                        } else {
-                            saveProgress();
-                            return;
-                        }
-                    }
-                    boops = (getCookie("boops") || 0) * 1;
-                    hboops = (getCookie("hboops") || 0) * 1;
-                    factSave = getCookie("factSave").split("|");
-                    for (var i = 0; i < factSave.length; i++) {
-                        var factory, factInfo = factSave[i].split(",");
-                        if ((factory = getFactoryById(factInfo[0])) !== undefined) {
-                            factory.quantity = factInfo[1] * 1;
-                        }
-                    }
-                    toastr.success("Loaded progress.");
-                }
-            }
-
-            function clearProgress() {
-                if (confirm("Are you sure you want to clear your progress?")) {
-                    for (var i = 0; i < factories.length; i++) {
-                        factories[i].quantity = 0;
-                    }
-                    boops = 0;
-                    hboops = 0;
-                    saveProgress();
-                    setCookie("version", "");
-                }
-            }
-
-            function sendHighScore() {
-
-            }
-
-            function getFactoryById(id) {
-                for (var i = 0; i < factories.length; i++) {
-                    if (factories[i].id === id) {
-                        return factories[i];
-                    }
-                }
-                return undefined;
-            }
-
-            function showChangelog() {
-
-            }
-
-            $(function () {
-                $("#openChangelog, #closeChangelog").click(function (event) {
-                    $("#changelogContainer").toggle();
-                });
-                $("#changelogContainer").click(function (event) {
-                    if (event.target.id === "changelogContainer") {
-                        $("#changelogContainer").toggle();
-                    }
-                });
-                $("#openCredits, #closeCredits").click(function (event) {
-                    $("#creditsContainer").toggle();
-                });
-                $("#creditsContainer").click(function (event) {
-                    if (event.target.id === "creditsContainer") {
-                        $("#creditsContainer").toggle();
-                    }
-                });
-            });
-        </script>
 
     </head>
     <body onload="init();">
+        <div id="trNote"><a href="http://shinoboopbeta.cyberpon3.net">&gt;To Beta&lt;</a></div>
         <div id="mainContent" class="container">
             <div class="col-lg-6">
                 <div id="bStats">
-                    <h1><img src="/img/heartif.png" /><span id="totalBoops">0</span><img src="/img/heartif.png" /></h1>
-                    <h3><span id="bps">0</span>bps</h3>
+                    <h1><img src="/img/heartif.png" /><span class="counter-totalBoops">0</span><img src="/img/heartif.png" /></h1>
+                    <h3><span class="counter-bps">0</span>bps</h3>
                 </div>
                 <div id="shino"><img id="shinoimg" src="/img/shino.png" alt="Shino" onclick="onShinoBooped();"/></div>
             </div>
@@ -593,68 +48,172 @@ and open the template in the editor.
             </div>
         </div>
         <div id="footbar">
-            <div id="versionContainer"><span id="version">v0.6</span>.1&nbsp;|&nbsp;<a id="openChangelog" href="#">Changelog</a>&nbsp;|&nbsp;<a id="openCredits" href="#">Credits</a></div>
-            <div id="settings">
+            <div id="settings" class="col-md-6">
                 <input type="button" value="Clear progress" onclick="clearProgress()" />
                 <input type="button" value="Force save progress" onclick="saveProgress()" />
             </div>
+            <div id="versionContainer" class="col-md-6">
+                <span id="version">v0.7</span>&nbsp;|&nbsp;
+                <a data-toggle="modal" data-target="#mFeedback" href="#">Feedback</a>&nbsp;|&nbsp;
+                <a data-toggle="modal" data-target="#mHighscores" href="#">Highscores</a>&nbsp;|&nbsp;
+                <a data-toggle="modal" data-target="#mChangelog" href="#">Changelog</a>&nbsp;|&nbsp;
+                <a data-toggle="modal" data-target="#mCredits" href="#">Credits</a>
+            </div>
         </div>
-        <div id="changelogContainer" class="lightboxContainer">
-            <div id="changelog" class="lightboxContent scrollContainerParent container">
-                <div>
-                    <h1>Changelog</h1>
-                    <div id="closeChangelog" class="closeLightbox">X</div>
-                </div>
-                <div class="scrollContainer">
-                    <h3>v0.6.1</h3>
-                    <p>Fixed only Chiras getting saved</p>
-                    <p>Fixed not being able to remove a Helper Pony</p>
-                    
-                    <h3>v0.6</h3>
-                    <p>Added changelog and credits</p>
-                    
-                    <h3>v0.5</h3>
-                    <p>Added progress saving</p>
 
-                    <h3>v0.4</h3>
-                    <p>Added friends</p>
-                    <img src="/img/friends.png" alt="Sad Shino" />
+        <div id="mChangelog" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">Changelog</h2>
+                    </div>
+                    <div id="ChangelogContainer" class="modal-body text-center">
+                        <h3>v0.7</h3>
+                        <p>Added Highscores & Feedback</p>
+                        <p>Fixed Hearts not disappearing in Firefox</p>
+                        <p>Refactored some stuff</p>
+                        
+                        <h3>v0.6.1</h3>
+                        <p>Fixed only Chiras getting saved</p>
+                        <p>Fixed not being able to remove a Helper Pony</p>
 
-                    <h3>v0.3</h3>
-                    <p>Added Boops per Minute (bpm)</p>
+                        <h3>v0.6</h3>
+                        <p>Added changelog and credits</p>
 
-                    <h3>v0.2</h3>
-                    <p>Added hearts</p>
+                        <h3>v0.5</h3>
+                        <p>Added progress saving</p>
 
-                    <h3>v0.1</h3>
-                    <p>In the beginning...</p>
-                    <img src="/img/shino_no_cookies.png" alt="Sad Shino" />
+                        <h3>v0.4</h3>
+                        <p>Added friends</p>
+                        <img src="/img/friends.png" alt="Sad Shino" />
+
+                        <h3>v0.3</h3>
+                        <p>Added Boops per Minute (bpm)</p>
+
+                        <h3>v0.2</h3>
+                        <p>Added hearts</p>
+
+                        <h3>v0.1</h3>
+                        <p>In the beginning...</p>
+                        <img src="/img/shino_no_cookies.png" alt="Sad Shino" />
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="creditsContainer" class="lightboxContainer">
-            <div id="credits" class="lightboxContent scrollContainerParent container">
-                <div>
-                    <h1>Credits</h1>
-                    <div id="closeCredits" class="closeLightbox">X</div>
+
+        <div id="mCredits" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">Credits</h2>
+                    </div>
+                    <div id="CreditsContainer" class="modal-body text-center">
+                        <h3>Game Development:</h3>
+                        <a href="http://cyberpon3.deviantart.com/">
+                            <p>CyberPon3</p>
+                            <img src="/img/CyberPon3.png" alt="CyberPon3" />
+                        </a>
+
+                        <h3>Graphics & Art:</h3>
+                        <a href="http://wedraw4boops.deviantart.com/">
+                            <p>WeDraw4Boops Team</p>
+                            <img src="/img/stream.png" alt="WeDraw4Boops Livestream" />
+                        </a>
+
+                        <h3>JS/CSS Libraries:</h3>
+                        <p>jQuery</p>
+                        <p>Bootstrap</p>
+                        <p>toastr</p>
+                    </div>
                 </div>
-                <div class="scrollContainer">
-                    <h3>Game Development:</h3>
-                    <a href="http://cyberpon3.deviantart.com/">
-                        <p>CyberPon3</p>
-                        <img src="/img/CyberPon3.png" alt="CyberPon3" />
-                    </a>
+            </div>
+        </div>
 
-                    <h3>Graphics & Art:</h3>
-                    <a href="http://wedraw4boops.deviantart.com/">
-                        <p>WeDraw4Boops Team</p>
-                        <img src="/img/stream.png" alt="WeDraw4Boops Livestream" />
-                    </a>
+        <div id="mFeedback" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" style="display: inline-block;">Feedback/Suggestions</h2>
+                        <button class="btn btn-default pull-left" style="margin-top: 4px;" type="button" data-toggle="collapse" data-target="#fbAddForm"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button class="btn btn-default pull-right" style="margin-top: 4px;" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default pull-right" style="margin-top: 4px;" type="button" onclick="getFeedback();"><span class="glyphicon glyphicon-refresh"></span></button>
+                    </div>
+                    <div class="modal-body">
 
-                    <h3>JS/CSS Libraries:</h3>
-                    <p>jQuery</p>
-                    <p>Bootstrap</p>
-                    <p>toastr</p>
+                        <div class="collapse" id="fbAddForm">
+                            <div id="fbIncompleteErr" class="alert alert-danger" style="display: none;">
+                                <strong>Error:</strong> Please fill all of the boxes, silly!
+                            </div>
+                            <form class="form-horizontal" role="form" action="javascript:void(0);">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="fbType">Comment Type:</label>
+                                    <div class="col-sm-10">
+                                        <select id="fbType" name="fbType" class="form-control">
+                                            <option value="1">Comment/Feedback</option>
+                                            <option value="2">Feature Request</option>
+                                            <option value="3">Bug Report</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="fbName">Username:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="fbName" name="fbName" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="fbMsg">Message:</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="fbMsg" name="fbMsg" class="form-control" placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group"> 
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-default" onclick="submitFeedback();">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+                        </div>
+
+                        <div id="FeedbackContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mHighscores" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" style="display: inline-block;">Highscores</h2>
+                        <button class="btn btn-default pull-left" style="margin-top: 4px;" type="button" data-toggle="collapse" data-target="#hsAddForm"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button class="btn btn-default pull-right" style="margin-top: 4px;" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default pull-right" style="margin-top: 4px;" type="button" onclick="getHighscores();"><span class="glyphicon glyphicon-refresh"></span></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="collapse container-fluid" id="hsAddForm">
+                            <div id="hsIncompleteErr" class="alert alert-danger" style="display: none;">
+                                <strong>Error:</strong> Please fill all of the boxes, silly!
+                            </div>
+                            <form class="row" role="form" action="javascript:void(0);">
+                                <div class="col-md-1 paddedCounter">?</div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="hsName" name="hsName" placeholder="Username">
+                                </div>
+                                <div class="col-md-2 col-xs-6 paddedCounter counter-totalBoops"></div>
+                                <div class="col-md-2 col-xs-6 paddedCounter counter-bps"></div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-default" style="width:100%" onclick="submitHighscores();">Submit</button>
+                                </div>
+                            </form>
+                            <hr />
+                        </div>
+                        <div id="HighscoresContainer" class="container-fluid"></div>
+                    </div>
                 </div>
             </div>
         </div>
