@@ -58,7 +58,7 @@ function init() {
     
     $("#mHighscores").on('show.bs.modal', function () {
         window.location.hash = "#Highscores";
-        document.getElementById('FeedbackContainer').innerHTML = '<div class="text-center" style="margin: 75px 0;"><span class="glyphicon glyphicon-refresh loading"></span></div>';
+        document.getElementById('HighscoresContainer').innerHTML = '<div class="text-center" style="margin: 75px 0;"><span class="glyphicon glyphicon-refresh loading"></span></div>';
     });
     $("#mHighscores").on('shown.bs.modal', function () {
         getHighscores();
